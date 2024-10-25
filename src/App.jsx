@@ -10,11 +10,23 @@ import Subscribe from './components/Subscribe/Subscribe'
 function App() {
 
   const [freeAddMoney, setFreeAddMoney] = useState(0);
+  const [isActive, setIsActive] = useState('available');
 
+  // Free Add Money Functionality
   const handleFreeAddMoney = () => {
-    console.log('free add money clicked');
+    // console.log('free add money clicked');
     const newFreeAddMoney = freeAddMoney + 4500000;
     setFreeAddMoney(newFreeAddMoney);
+  }
+
+  // Btn toggle functionality
+  const handleActiveState = (status) => {
+    setIsActive(status);
+  }
+
+  // Choose Player Functionality
+  const handleChoosePlayer = () => {
+    console.log("choose player btn clicked");
   }
 
   return (
@@ -22,7 +34,11 @@ function App() {
       {/* Header */}
       <Header freeAddMoney={freeAddMoney}></Header>
       <Banner handleFreeAddMoney={handleFreeAddMoney}></Banner>
-      <Players></Players>
+      <Players 
+        handleActiveState={handleActiveState}
+        isActive={isActive}
+        handleChoosePlayer={handleChoosePlayer}
+      ></Players>
       <Subscribe></Subscribe>
       <Footer></Footer>
     </>
