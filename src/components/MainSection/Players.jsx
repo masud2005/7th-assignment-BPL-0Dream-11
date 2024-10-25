@@ -5,7 +5,7 @@ import { useState } from "react";
 import Player from "./Player";
 import SelectedPlayersContainer from './SelectedPlayersContainer';
 
-const Players = ({handleActiveState, isActive, handleChoosePlayer, choosePlayer, handleRemovePlayer}) => {
+const Players = ({handleActiveState, isActive, handleChoosePlayer, choosePlayer, handleRemovePlayer, handleAddMoreBtn}) => {
     // console.log(choosePlayer)
     const [players, setPlayers] = useState([])
 
@@ -36,7 +36,7 @@ const Players = ({handleActiveState, isActive, handleChoosePlayer, choosePlayer,
                 }
             </div>
             {
-                isActive === 'selected' && <SelectedPlayersContainer choosePlayer={choosePlayer} handleRemovePlayer={handleRemovePlayer}></SelectedPlayersContainer>
+                isActive === 'selected' && <SelectedPlayersContainer choosePlayer={choosePlayer} handleRemovePlayer={handleRemovePlayer} handleAddMoreBtn={handleAddMoreBtn}> isActive={isActive}</SelectedPlayersContainer>
             }
         </div>
     );
@@ -47,7 +47,8 @@ Players.propTypes = {
     isActive : PropTypes.string,
     handleChoosePlayer: PropTypes.func,
     choosePlayer: PropTypes.array,
-    handleRemovePlayer: PropTypes.func
+    handleRemovePlayer: PropTypes.func,
+    handleAddMoreBtn: PropTypes.func
 }
 
 export default Players;

@@ -1,4 +1,6 @@
 
+import { ToastContainer, toast, Bounce, Zoom } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { useState } from 'react'
 import './App.css'
 import Banner from './components/Banner/Banner'
@@ -31,17 +33,39 @@ function App() {
     const totalBalance = freeAddMoney > player.biddingPrice;
     const isExist = choosePlayer.find(singlePlayer => singlePlayer.playerId === player.playerId);
     const isPlayersLimit = choosePlayer.length >= 6;
-    
+
     if (isExist) {
-      alert("Player already selected!")
+      // alert("Player already selected!")
+      toast.error('Player already selected!', {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        transition: Bounce,
+      });
       return;
     }
 
-    if(isPlayersLimit){
-      alert('Your cannot add more than 6 players!');
+    if (isPlayersLimit) {
+      // alert('Your cannot add more than 6 players!');
+      toast.error('Your cannot add more than 6 players!', {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        transition: Bounce,
+      });
       return;
     }
-    
+
     if (totalBalance) {
       // console.log('amake add kora jabe');
       const currentTotalBalance = freeAddMoney - player.biddingPrice;
@@ -49,7 +73,18 @@ function App() {
       setChoosePlayer([...choosePlayer, player]);
     }
     else {
-      alert('Insufficient balance! Please add funds to proceed.');
+      // alert('Insufficient balance! Please add funds to proceed.');
+      toast.error('Insufficient balance! Please add funds to proceed.', {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        transition: Bounce,
+      });
     }
   }
 
@@ -59,22 +94,56 @@ function App() {
     const remainingPlayers = choosePlayer.filter(player => player.playerId !== playerId);
     // console.log(remainingPlayers);
     setChoosePlayer(remainingPlayers);
+
+    const updatedBalance = choosePlayer.find(player => player.playerId === playerId);
+    const currentTotalBalance = freeAddMoney + updatedBalance.biddingPrice;
+    setFreeAddMoney(currentTotalBalance);
+  }
+
+  // Add More Btn Functionality
+  const handleAddMoreBtn = (available) => {
+    // console.log('handle add more btn clicked');
+    setIsActive(available);
   }
 
   return (
     <>
-      {/* Header */}
+      {/* Header Section*/}
       <Header freeAddMoney={freeAddMoney}></Header>
+
+      {/* Banner Section*/}
       <Banner handleFreeAddMoney={handleFreeAddMoney}></Banner>
+
+      {/* Players Section */}
       <Players
         handleActiveState={handleActiveState}
         isActive={isActive}
         handleChoosePlayer={handleChoosePlayer}
         choosePlayer={choosePlayer}
         handleRemovePlayer={handleRemovePlayer}
+        handleAddMoreBtn={handleAddMoreBtn}
       ></Players>
+
+      {/* Subscribe Section */}
       <Subscribe></Subscribe>
+
+      {/* Footer Section */}
       <Footer></Footer>
+
+      {/* React Toastify */}
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+        transition={Bounce}
+      />
     </>
   )
 }
