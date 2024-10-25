@@ -11,6 +11,7 @@ function App() {
 
   const [freeAddMoney, setFreeAddMoney] = useState(0);
   const [isActive, setIsActive] = useState('available');
+  const [choosePlayer, setChoosePlayer] = useState([]);
 
   // Free Add Money Functionality
   const handleFreeAddMoney = () => {
@@ -25,9 +26,20 @@ function App() {
   }
 
   // Choose Player Functionality
-  const handleChoosePlayer = () => {
-    console.log("choose player btn clicked");
+  const handleChoosePlayer = (player) => {
+    // console.log(player);
+    const totalBalance = freeAddMoney > player.biddingPrice;
+    if(totalBalance){
+      // console.log('amake add kora jabe');
+      const currentTotalBalance = freeAddMoney - player.biddingPrice;
+      setFreeAddMoney(currentTotalBalance);
+      setChoosePlayer([...choosePlayer, player]);
+    }
+    else{
+      alert('amar porjopto balance nai!');
+    }
   }
+  // console.log(choosePlayer);
 
   return (
     <>
@@ -38,6 +50,7 @@ function App() {
         handleActiveState={handleActiveState}
         isActive={isActive}
         handleChoosePlayer={handleChoosePlayer}
+        choosePlayer={choosePlayer}
       ></Players>
       <Subscribe></Subscribe>
       <Footer></Footer>

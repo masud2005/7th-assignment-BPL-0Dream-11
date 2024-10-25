@@ -32,7 +32,7 @@ const Player = ({ player, handleChoosePlayer }) => {
                     </div>
                     <div className="flex justify-between items-center">
                         <p>Price: ${biddingPrice}</p>
-                        <button onClick={handleChoosePlayer} className="btn min-h-10 h-0">Choose Player</button>
+                        <button onClick={() => handleChoosePlayer(player)} className="btn min-h-10 h-0">Choose Player</button>
                     </div>
                 </div>
             </div>
