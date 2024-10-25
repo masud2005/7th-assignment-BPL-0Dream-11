@@ -2,13 +2,13 @@
 import PropTypes from 'prop-types'
 import SelectedPlayerList from "./SelectedPlayerList";
 
-const SelectedPlayer = ({ choosePlayer }) => {
+const SelectedPlayer = ({ choosePlayer, handleRemovePlayer }) => {
     console.log(choosePlayer)
     return (
-        <div className="border rounded-lg p-5 grid grid-cols-1 gap-5">
+        <div className="border rounded-lg p-2 md:p-5 grid grid-cols-1 gap-2 md:gap-5">
             {
                 choosePlayer.map(player =>
-                    <SelectedPlayerList player={player} key={player.playerId}></SelectedPlayerList>
+                    <SelectedPlayerList player={player} key={player.playerId} handleRemovePlayer={handleRemovePlayer}></SelectedPlayerList>
                 )
             }
         </div>
@@ -16,7 +16,8 @@ const SelectedPlayer = ({ choosePlayer }) => {
 };
 
 SelectedPlayer.propTypes = {
-    choosePlayer: PropTypes.array
+    choosePlayer: PropTypes.array,
+    handleRemovePlayer: PropTypes.func
 }
 
 export default SelectedPlayer;

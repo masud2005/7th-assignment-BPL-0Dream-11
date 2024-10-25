@@ -36,10 +36,21 @@ function App() {
       setChoosePlayer([...choosePlayer, player]);
     }
     else{
-      alert('amar porjopto balance nai!');
+      alert('amar porjapto balance nai!');
     }
   }
   // console.log(choosePlayer);
+
+  // Remove Btn functionality 
+  const handleRemovePlayer = (playerId) => {
+    console.log(playerId);
+    const isExist = choosePlayer.filter(player => player.playerId !== playerId);
+    console.log(isExist);
+    setChoosePlayer(isExist);
+    // if(isExist){
+    //   setChoosePlayer()
+    // }
+  }
 
   return (
     <>
@@ -51,6 +62,7 @@ function App() {
         isActive={isActive}
         handleChoosePlayer={handleChoosePlayer}
         choosePlayer={choosePlayer}
+        handleRemovePlayer={handleRemovePlayer}
       ></Players>
       <Subscribe></Subscribe>
       <Footer></Footer>
