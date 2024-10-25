@@ -29,27 +29,36 @@ function App() {
   const handleChoosePlayer = (player) => {
     // console.log(player);
     const totalBalance = freeAddMoney > player.biddingPrice;
-    if(totalBalance){
+    const isExist = choosePlayer.find(singlePlayer => singlePlayer.playerId === player.playerId);
+    const isPlayersLimit = choosePlayer.length >= 6;
+    
+    if (isExist) {
+      alert("Player already selected!")
+      return;
+    }
+
+    if(isPlayersLimit){
+      alert('Your cannot add more than 6 players!');
+      return;
+    }
+    
+    if (totalBalance) {
       // console.log('amake add kora jabe');
       const currentTotalBalance = freeAddMoney - player.biddingPrice;
       setFreeAddMoney(currentTotalBalance);
       setChoosePlayer([...choosePlayer, player]);
     }
-    else{
-      alert('amar porjapto balance nai!');
+    else {
+      alert('Insufficient balance! Please add funds to proceed.');
     }
   }
-  // console.log(choosePlayer);
 
   // Remove Btn functionality 
   const handleRemovePlayer = (playerId) => {
-    console.log(playerId);
-    const isExist = choosePlayer.filter(player => player.playerId !== playerId);
-    console.log(isExist);
-    setChoosePlayer(isExist);
-    // if(isExist){
-    //   setChoosePlayer()
-    // }
+    // console.log(playerId);
+    const remainingPlayers = choosePlayer.filter(player => player.playerId !== playerId);
+    // console.log(remainingPlayers);
+    setChoosePlayer(remainingPlayers);
   }
 
   return (
@@ -57,7 +66,7 @@ function App() {
       {/* Header */}
       <Header freeAddMoney={freeAddMoney}></Header>
       <Banner handleFreeAddMoney={handleFreeAddMoney}></Banner>
-      <Players 
+      <Players
         handleActiveState={handleActiveState}
         isActive={isActive}
         handleChoosePlayer={handleChoosePlayer}
