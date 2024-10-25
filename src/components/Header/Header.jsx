@@ -1,5 +1,7 @@
 
-const Header = () => {
+import PropTypes from 'prop-types';
+
+const Header = ({freeAddMoney}) => {
     return (
         <header className="sticky top-0 bg-white backdrop-blur-md bg-opacity-40 z-50">
             <div className="container mx-auto navbar flex items-center">
@@ -39,11 +41,15 @@ const Header = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <a className="btn bg-transparent">0 Coin <img className="w-8" src="https://img.icons8.com/?size=48&id=sPBQkuep9vDA&format=png" alt="coin..." /></a>
+                    <a className="btn bg-transparent">{freeAddMoney} Coin <img className="w-8" src="https://img.icons8.com/?size=48&id=sPBQkuep9vDA&format=png" alt="coin..." /></a>
                 </div>
             </div>
         </header>
     );
 };
+
+Header.propTypes = {
+    freeAddMoney : PropTypes.number,
+}
 
 export default Header;

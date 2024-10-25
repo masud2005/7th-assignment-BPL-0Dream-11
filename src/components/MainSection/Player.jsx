@@ -1,6 +1,8 @@
 
+import PropTypes from 'prop-types';
+
 const Player = ({ player }) => {
-    console.log(player)
+    // console.log(player)
     const { image, name, country, role, battingType, bowlingType, biddingPrice } = player;
     return (
         // <div className="px-2">
@@ -37,5 +39,9 @@ const Player = ({ player }) => {
         // </div>
     );
 };
+
+Player.propTypes = {
+    player: PropTypes.object,
+}
 
 export default Player;

@@ -1,5 +1,7 @@
 
-const Banner = () => {
+import PropTypes from 'prop-types';
+
+const Banner = ({handleFreeAddMoney}) => {
     return (
         <div className="px-2">
             <div
@@ -16,7 +18,7 @@ const Banner = () => {
                         <p className="mb-8">Beyond Boundaries Beyond Limits</p>
                         <div className="flex justify-center space-x-3">
                             <div className="bg-transparent p-1 border rounded-xl">
-                                <button className="btn bg-lime-300 rounded-xl border-none px-8 text-base md:text-lg md:font-bold border">Claim Free Credit</button>
+                                <button onClick={handleFreeAddMoney} className="btn bg-lime-300 rounded-xl border-none px-8 text-base md:text-lg md:font-bold border">Claim Free Credit</button>
                             </div>
                         </div>
                     </div>
@@ -25,5 +27,9 @@ const Banner = () => {
         </div>
     );
 };
+
+Banner.propTypes = {
+    handleFreeAddMoney : PropTypes.func,
+}
 
 export default Banner;
