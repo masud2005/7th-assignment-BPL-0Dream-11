@@ -2,7 +2,6 @@
 import PropTypes from 'prop-types'
 
 const SelectedPlayerList = ({ player, handleRemovePlayer }) => {
-    // console.log(player)
     const { name, image, biddingPrice, role, playerId } = player
     return (
         <>
@@ -19,7 +18,6 @@ const SelectedPlayerList = ({ player, handleRemovePlayer }) => {
                     <img className='h-8' src="https://img.icons8.com/?size=100&id=TIoH8Dbt0cSQ&format=png&color=000000" alt="Delete..." />
                 </button>
             </div>
-            
         </>
     );
 };

@@ -5,8 +5,7 @@ import { useState } from "react";
 import Player from "./Player";
 import SelectedPlayersContainer from './SelectedPlayersContainer';
 
-const Players = ({handleActiveState, isActive, handleChoosePlayer, choosePlayer, handleRemovePlayer, handleAddMoreBtn}) => {
-    // console.log(choosePlayer)
+const Players = ({handleActiveState, isActive, handleChoosePlayer, choosePlayer, handleRemovePlayer}) => {
     const [players, setPlayers] = useState([])
 
     useEffect(() => {
@@ -14,12 +13,11 @@ const Players = ({handleActiveState, isActive, handleChoosePlayer, choosePlayer,
             .then(res => res.json())
             .then(data => setPlayers(data));
     }, [])
-    // console.log(players)
 
     return (
         <div className="container mx-auto px-2">
             <div className="flex justify-between items-center mt-20 mb-10">
-                <h1 className='font-bold text-sm md:text-lg'>
+                <h1 className='font-bold text-sm md:text-xl'>
                     {isActive === 'available'&& 'Available Players'}
                     {isActive === 'selected' && `Selected Players (${choosePlayer.length}/6)`}
                 </h1>
@@ -36,7 +34,7 @@ const Players = ({handleActiveState, isActive, handleChoosePlayer, choosePlayer,
                 }
             </div>
             {
-                isActive === 'selected' && <SelectedPlayersContainer choosePlayer={choosePlayer} handleRemovePlayer={handleRemovePlayer} handleAddMoreBtn={handleAddMoreBtn}> isActive={isActive}</SelectedPlayersContainer>
+                isActive === 'selected' && <SelectedPlayersContainer choosePlayer={choosePlayer} handleRemovePlayer={handleRemovePlayer} handleActiveState={handleActiveState}> isActive={isActive}</SelectedPlayersContainer>
             }
         </div>
     );
@@ -48,7 +46,6 @@ Players.propTypes = {
     handleChoosePlayer: PropTypes.func,
     choosePlayer: PropTypes.array,
     handleRemovePlayer: PropTypes.func,
-    handleAddMoreBtn: PropTypes.func
 }
 
 export default Players;

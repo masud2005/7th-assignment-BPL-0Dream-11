@@ -1,5 +1,5 @@
 
-import { ToastContainer, toast, Bounce, Zoom } from 'react-toastify';
+import { ToastContainer, toast, Bounce} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useState } from 'react'
 import './App.css'
@@ -11,15 +11,14 @@ import Subscribe from './components/Subscribe/Subscribe'
 
 function App() {
 
-  const [freeAddMoney, setFreeAddMoney] = useState(0);
+  const [totalMainBalance, setTotalMainBalance] = useState(0);
   const [isActive, setIsActive] = useState('available');
   const [choosePlayer, setChoosePlayer] = useState([]);
 
   // Free Add Money Functionality
   const handleFreeAddMoney = () => {
-    // console.log('free add money clicked');
-    const newFreeAddMoney = freeAddMoney + 4500000;
-    setFreeAddMoney(newFreeAddMoney);
+    const newFreeAddMoney = totalMainBalance + 4500000;
+    setTotalMainBalance(newFreeAddMoney);
   }
 
   // Btn toggle functionality
@@ -29,8 +28,7 @@ function App() {
 
   // Choose Player Functionality
   const handleChoosePlayer = (player) => {
-    // console.log(player);
-    const totalBalance = freeAddMoney > player.biddingPrice;
+    const totalBalance = totalMainBalance > player.biddingPrice;
     const isExist = choosePlayer.find(singlePlayer => singlePlayer.playerId === player.playerId);
     const isPlayersLimit = choosePlayer.length >= 6;
 
@@ -67,9 +65,8 @@ function App() {
     }
 
     if (totalBalance) {
-      // console.log('amake add kora jabe');
-      const currentTotalBalance = freeAddMoney - player.biddingPrice;
-      setFreeAddMoney(currentTotalBalance);
+      const currentTotalBalance = totalMainBalance - player.biddingPrice;
+      setTotalMainBalance(currentTotalBalance);
       setChoosePlayer([...choosePlayer, player]);
     }
     else {
@@ -90,26 +87,20 @@ function App() {
 
   // Remove Btn functionality 
   const handleRemovePlayer = (playerId) => {
-    // console.log(playerId);
     const remainingPlayers = choosePlayer.filter(player => player.playerId !== playerId);
-    // console.log(remainingPlayers);
     setChoosePlayer(remainingPlayers);
 
-    const updatedBalance = choosePlayer.find(player => player.playerId === playerId);
-    const currentTotalBalance = freeAddMoney + updatedBalance.biddingPrice;
-    setFreeAddMoney(currentTotalBalance);
+    // Total Main Balance Decrement
+    // const updatedBalance = choosePlayer.find(player => player.playerId === playerId);
+    // const currentTotalBalance = totalMainBalance + updatedBalance.biddingPrice;
+    // setTotalMainBalance(currentTotalBalance);
   }
 
-  // Add More Btn Functionality
-  const handleAddMoreBtn = (available) => {
-    // console.log('handle add more btn clicked');
-    setIsActive(available);
-  }
 
   return (
     <>
       {/* Header Section*/}
-      <Header freeAddMoney={freeAddMoney}></Header>
+      <Header totalMainBalance={totalMainBalance}></Header>
 
       {/* Banner Section*/}
       <Banner handleFreeAddMoney={handleFreeAddMoney}></Banner>
@@ -121,7 +112,6 @@ function App() {
         handleChoosePlayer={handleChoosePlayer}
         choosePlayer={choosePlayer}
         handleRemovePlayer={handleRemovePlayer}
-        handleAddMoreBtn={handleAddMoreBtn}
       ></Players>
 
       {/* Subscribe Section */}
@@ -148,4 +138,4 @@ function App() {
   )
 }
 
-export default App
+export default App;

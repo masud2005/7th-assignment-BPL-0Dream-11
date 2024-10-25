@@ -2,11 +2,9 @@
 import PropTypes from 'prop-types'
 import SelectedPlayerList from "./SelectedPlayerList";
 
-const SelectedPlayer = ({ choosePlayer, handleRemovePlayer, handleAddMoreBtn, isActive }) => {
-    // console.log(choosePlayer)
+const SelectedPlayersContainer = ({ choosePlayer, handleRemovePlayer, handleActiveState}) => {
     return (
         <>
-
             <div className="border rounded-lg p-2 md:p-5 grid grid-cols-1 gap-2 md:gap-5">
                 {
                     choosePlayer.map(player =>
@@ -14,18 +12,16 @@ const SelectedPlayer = ({ choosePlayer, handleRemovePlayer, handleAddMoreBtn, is
                     )
                 }
             </div>
-            {/* <div className="bg-transparent p-1 border rounded-xl"> */}
-            <button onClick={() => handleAddMoreBtn(isActive)} className="btn mt-8 bg-lime-300 rounded-xl border-none px-8 text-base md:text-lg md:font-bold border">Add More Player</button>
-            {/* </div> */}
+            <button onClick={() => handleActiveState('available')} className="btn mt-8 bg-lime-300 rounded-xl border-none px-8 text-base md:text-lg md:font-bold border">Add More Player</button>
         </>
     );
 };
 
-SelectedPlayer.propTypes = {
+SelectedPlayersContainer.propTypes = {
     choosePlayer: PropTypes.array,
     handleRemovePlayer: PropTypes.func,
-    handleAddMoreBtn: PropTypes.func,
+    handleActiveState: PropTypes.func,
     isActive: PropTypes.string
 }
 
-export default SelectedPlayer;
+export default SelectedPlayersContainer;
