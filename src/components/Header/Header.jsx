@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const Header = ({totalMainBalance}) => {
     return (
         <header className="sticky top-0 bg-white backdrop-blur-md bg-opacity-40 z-50">
-            <div className="container mx-auto navbar flex items-center">
+            <div className="container mx-auto navbar flex justify-between items-center">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden p-0 pr-4">
@@ -32,7 +32,7 @@ const Header = ({totalMainBalance}) => {
                     </div>
                     <a ><img className="h-full w-full" src="https://i.imgur.com/aRmFQlW.png" alt="logo..." /></a>
                 </div>
-                <div className="navbar-center hidden lg:flex">
+                <div className="navbar-end mr-10 hidden lg:flex">
                     <ul className="menu menu-horizontal px-1 text-base">
                         <li><a>Home</a></li>
                         <li><a>Fixture</a></li>
@@ -40,7 +40,7 @@ const Header = ({totalMainBalance}) => {
                         <li><a>Schedules</a></li>
                     </ul>
                 </div>
-                <div className="navbar-end">
+                <div className="navbar-end w-auto">
                     <a className="btn bg-transparent">{totalMainBalance} Coin <img className="w-8" src="https://img.icons8.com/?size=48&id=sPBQkuep9vDA&format=png" alt="coin..." /></a>
                 </div>
             </div>

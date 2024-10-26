@@ -19,6 +19,7 @@ function App() {
   const handleFreeAddMoney = () => {
     const newFreeAddMoney = totalMainBalance + 4500000;
     setTotalMainBalance(newFreeAddMoney);
+    toast.success('Credit Added to your Account');
   }
 
   // Btn toggle functionality
@@ -34,33 +35,13 @@ function App() {
 
     if (isExist) {
       // alert("Player already selected!")
-      toast.error('Player already selected!', {
-        position: "top-center",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-        transition: Bounce,
-      });
+      toast.error('Player already selected!');
       return;
     }
 
     if (isPlayersLimit) {
       // alert('Your cannot add more than 6 players!');
-      toast.error('Your cannot add more than 6 players!', {
-        position: "top-center",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-        transition: Bounce,
-      });
+      toast.error('Your cannot add more than 6 players!');
       return;
     }
 
@@ -68,20 +49,11 @@ function App() {
       const currentTotalBalance = totalMainBalance - player.biddingPrice;
       setTotalMainBalance(currentTotalBalance);
       setChoosePlayer([...choosePlayer, player]);
+      toast.success(`Congrats!! ${player.name} is now in your squad.`);
     }
     else {
       // alert('Insufficient balance! Please add funds to proceed.');
-      toast.error('Insufficient balance! Please add funds to proceed.', {
-        position: "top-center",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-        transition: Bounce,
-      });
+      toast.error('Insufficient balance! Please add funds to proceed.');
     }
   }
 
@@ -89,6 +61,7 @@ function App() {
   const handleRemovePlayer = (playerId) => {
     const remainingPlayers = choosePlayer.filter(player => player.playerId !== playerId);
     setChoosePlayer(remainingPlayers);
+    toast.info('Player remove successfully.');
 
     // Total Main Balance Decrement
     // const updatedBalance = choosePlayer.find(player => player.playerId === playerId);
@@ -123,7 +96,7 @@ function App() {
       {/* React Toastify */}
       <ToastContainer
         position="top-center"
-        autoClose={5000}
+        autoClose={2000}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick
