@@ -16,14 +16,14 @@ const Players = ({handleActiveState, isActive, handleChoosePlayer, choosePlayer,
 
     return (
         <div className="container mx-auto px-2">
-            <div className="flex justify-between items-center mt-20 mb-10">
-                <h1 className='font-bold text-sm md:text-xl'>
-                    {isActive === 'available'&& 'Available Players'}
+            <div className="flex flex-col md:flex-row justify-between items-center mt-12 md:mt-20 mb-10">
+                <h1 className='font-bold text-xl'>
+                    {isActive === 'available'&& `Available Players (${players.length})`}
                     {isActive === 'selected' && `Selected Players (${choosePlayer.length}/6)`}
                 </h1>
-                <div className="border border-gray-300 rounded-lg gap-0">
-                    <button onClick={() => handleActiveState('available')} className={`${isActive === 'available' ? 'bg-lime-300' : ''} text-sm md:text-base px-[6px] md:px-3 py-3 rounded-l-lg`}>Available</button>
-                    <button onClick={() => handleActiveState('selected')} className={`${isActive === 'selected' ? 'bg-lime-300' : ''} text-sm md:text-base px-[6px] md:px-3 py-3 rounded-r-lg`}>Selected({choosePlayer.length})</button>
+                <div className="border border-gray-300 rounded-lg gap-0 mt-2 md:mt-0">
+                    <button onClick={() => handleActiveState('available')} className={`${isActive === 'available' ? 'bg-lime-300' : ''} text-base px-[6px] md:px-3 py-3 rounded-l-lg`}>Available</button>
+                    <button onClick={() => handleActiveState('selected')} className={`${isActive === 'selected' ? 'bg-lime-300' : ''} text-base px-[6px] md:px-3 py-3 rounded-r-lg`}>Selected({choosePlayer.length})</button>
                 </div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 xl:gap-8">
