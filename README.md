@@ -4,7 +4,7 @@
 ### BPL-Dream11-BD-A7
 
 ## Live Demo
-Check out the live version of the project [here](https://bpl-dream11-bd-a7.surge.sh/).
+Check out the live version of the project [https://bpl-dream11-bd-a7.surge.sh/](https://bpl-dream11-bd-a7.surge.sh/).
 
 ## Description
 BPL-Dream11-BD web application is an interactive platform that lets users build a custom sports team by selecting players from a roster while managing their budget and tracking their team composition. Each time a player is chosen, an alert popup confirms the addition to the team, providing clear feedback for the user. Double-clicking a player brings up a detailed popup with the player’s information, helping users make informed selections. Alerts are also displayed for actions like deleting a player or attempting to select a player already in the team, ensuring users are informed of all actions and budget limits as they create their ideal squad.
